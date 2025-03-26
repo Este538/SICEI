@@ -1,0 +1,14 @@
+{
+  "name": "sicei",
+  "version": "1.0.0",
+  "description": "something",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "alfonso",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
