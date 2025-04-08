@@ -6,28 +6,19 @@ pipeline {
     }
     
     stages {
-        stage('Clonar repositorio') {
+        
+        stage('Build') {
             steps {
                 git branch: 'main', url: 'https://github.com/Este538/SICEI.git'
-            }
-        }
-        
-        stage('Construir imagen Docker') {
-            steps {
                 bat 'docker --version'
                 bat 'docker build -t %DOCKER_IMAGE%:%BUILD_ID% .'
             }
         }
         
-        stage('Detener contenedor anterior') {
+        stage('Deploy') {
             steps {
                 bat 'docker stop sicei-container || exit 0'
                 bat 'docker rm sicei-container || exit 0'
-            }
-        }
-        
-        stage('Desplegar nueva imagen') {
-            steps {
                 bat 'docker run --name sicei-container -p 2000:2000 -d %DOCKER_IMAGE%:%BUILD_ID%'
             }
         }
